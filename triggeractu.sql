@@ -14,7 +14,7 @@ begin
 
 
     UPDATE equipo
-    SET numx = numx + 1
+    SET numx = coalesce(numx,0) + 1
     WHERE codequ = new.codequ;
 
     RETURN NEW
