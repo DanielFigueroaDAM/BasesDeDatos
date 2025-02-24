@@ -12,11 +12,9 @@ RETURNS TRIGGER
 LANGUAGE plpgsql
 AS $$
 DECLARE
-antiguoSalario integer;
 BEGIN
-select salario into antiguoSalario from xogador where codx=new.codx;
 
-if(new.salario>antiguoSalario*2) then
+if(new.salario>old.salario*2) then
 	raise exception 'no es valido';
 else
 	raise notice 'si es valido';
