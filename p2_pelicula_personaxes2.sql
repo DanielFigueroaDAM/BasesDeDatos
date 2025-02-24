@@ -18,10 +18,12 @@ CREATE OR REPLACE procedure p2_pelicula_personaxes2(codpelicula varchar) as $$
 DECLARE
     fila record;
     resultado varchar=E'\n';
+    nombrePersonaxe varchar;
 BEGIN
     resultado=resultado || 'titulo: ' || (select titulo from peliculas where codpel=codpelicula) || E'\n';
     for fila in (select * from interpretespel where codpel=codpelicula) loop
-        resultado=resultado || fila.codper || E'\n';
+
+        resultado=resultado || (select nomper from personaxes where codper=fila.codper)|| ' ' ||fila.codper || E'\n';
     end loop;
     raise notice '%',resultado;
 END;
