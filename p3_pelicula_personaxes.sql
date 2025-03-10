@@ -13,7 +13,7 @@ BEGIN
     for filap in (select * from peliculas) loop
         resultado=resultado || 'titulo: ' || filap.titulo || E'\n';
         for filai in (select * from interpretespel where codpel=filap.codpel) loop
-            nombrePersonaxe=(select nomper from personaxes where codper=filai.codper);
+            nombrePersonaxe=E'\t'||(select nomper from personaxes where codper=filai.codper);
             resultado=resultado || nombrePersonaxe || ' ' || filai.codper || E'\n';
         end loop;
     end loop;
